@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Employee Registration</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            margin: 0;
+            padding-top: 60px; /* Make space for the navbar */
+            color: #333;
+        }
+
+        /* Navigation bar styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #3b5998;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* Form container styles */
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 500px;
+            box-sizing: border-box;
+            margin: 0 auto; /* Center horizontally */
+            margin-top: 30px; /* Add some spacing from the navbar */
+        }
+
+        /* Form header styles */
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        /* Form field styles */
+        .form-field {
+            margin-bottom: 20px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="password"],
+        .form-field input[type="email"],
+        .form-field input[type="date"],
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .form-field input[type="text"]:focus,
+        .form-field input[type="password"]:focus,
+        .form-field input[type="email"]:focus,
+        .form-field input[type="date"]:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: #3b5998;
+        }
+
+        /* Radio group styles */
+        .radio-group {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* Error message styles */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        /* Button styles */
+        .button {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #314e86;
+        }
+
+    </style>
+</h:head>
+<h:body>
+    <ui:include src="/hrnav.xhtml" />
+    <div class="form-container">
+        <div class="form-header">
+            <h3>Employee Registration</h3>
+        </div>
+        <h:form id="registrationForm">
+            <h:messages globalOnly="true" styleClass="error" />
+
+            <div class="form-field">
+                <label for="fullname">Full Name:</label>
+                <h:inputText id="fullname" value="#{emp.fullname}" required="true" />
+                <h:message for="fullname" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <h:inputText id="email" value="#{emp.email}" required="true"
+                             pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                    <f:validateRegex pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
+                </h:inputText>
+                <h:message for="email" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="dob">Date of Birth:</label>
+                <h:inputText id="dob" value="#{emp.dob}" required="true">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <h:message for="dob" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="gender">Gender:</label>
+                <div class="radio-group">
+                    <h:selectOneRadio id="gender" value="#{emp.gender}" layout="lineDirection" required="true">
+                        <f:selectItem itemLabel="Male" itemValue="MALE" />
+                        <f:selectItem itemLabel="Female" itemValue="FEMALE" />
+                        <f:selectItem itemLabel="Other" itemValue="OTHER" />
+                    </h:selectOneRadio>
+                </div>
+                <h:message for="gender" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="marital_status">Marital Status:</label>
+                <h:selectOneMenu id="marital_status" value="#{emp.marital_status}" required="true">
+                    <f:selectItem itemLabel="--Select--" itemValue="" />
+                    <f:selectItem itemLabel="Single" itemValue="SINGLE" />
+                    <f:selectItem itemLabel="Married" itemValue="MARRIED" />
+                    <f:selectItem itemLabel="Divorced" itemValue="DIVORCED" />
+                </h:selectOneMenu>
+                <h:message for="marital_status" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="contactno">Contact Number:</label>
+                <h:inputText id="contactno" value="#{emp.contactno}" required="true"
+                             pattern="[6789][0-9]{9}">
+                    <f:validateRegex pattern="[6789][0-9]{9}" />
+                </h:inputText>
+                <h:message for="contactno" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="address">Address:</label>
+                <h:inputTextarea id="address" value="#{emp.address}" required="true" rows="5" cols="25" />
+                <h:message for="address" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="date_of_joining">Date of Joining:</label>
+                <h:inputText id="date_of_joining" value="#{emp.date_of_joining}" required="true">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <h:message for="date_of_joining" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="salary">Salary:</label>
+                <h:inputText id="salary" value="#{emp.salary}" required="true">
+                    <f:convertNumber pattern="#,##0.00" />
+                </h:inputText>
+                <h:message for="salary" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="years_of_experience">Years of Experience:</label>
+                <h:inputText id="years_of_experience" value="#{emp.years_of_experience}" required="true">
+                    <f:convertNumber integerOnly="true" />
+                </h:inputText>
+                <h:message for="years_of_experience" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="employee_type">Employee Type:</label>
+                <h:selectOneMenu id="employee_type" value="#{emp.employee_type}" required="true">
+                    <f:selectItem itemLabel="--Select--" itemValue="" />
+                    <f:selectItem itemLabel="Permanent" itemValue="PERMANENT" />
+                    <f:selectItem itemLabel="Contract" itemValue="CONTRACT" />
+                    <f:selectItem itemLabel="Intern" itemValue="INTERN" />
+                </h:selectOneMenu>
+                <h:message for="employee_type" styleClass="error-message" />
+            </div>
+
+            <div class="form-field">
+                <label for="status">Status:</label>
+                <h:selectOneMenu id="status" value="#{emp.status}" required="true">
+                    <f:selectItem itemLabel="--Select--" itemValue="" />
+                    <f:selectItem itemLabel="Active" itemValue="ACTIVE" />
+                    <f:selectItem itemLabel="Terminated" itemValue="TERMINATED" />
+                    <f:selectItem itemLabel="Inactive" itemValue="INACTIVE" />
+                </h:selectOneMenu>
+                <h:message for="status" styleClass="error-message" />
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-field">
+                <h:commandButton id="submitBtn" styleClass="button" value="Submit" action="#{emp.add()}" />
+                <h:message for="submitBtn" styleClass="error-message" />
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

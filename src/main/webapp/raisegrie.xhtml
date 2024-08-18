@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>EMPGRE SYSTEM</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #f0f8ff; /* Changed background color */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        td, th {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            text-align: left;
+            color: #333;
+            font-weight: normal;
+        }
+
+        /* Input field styles */
+        input[type=text], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            background-color: #fafafa;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type=text]:focus, textarea:focus, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+
+        .message {
+            font-size: 14px;
+            color: #e53935;
+        }
+
+        /* Date input styles */
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0 12px 0;
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+
+        /* Submit button styles */
+        .custom-submit-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .custom-submit-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            td, th {
+                padding: 10px;
+            }
+        }
+    </style>
+</h:head>
+
+<body>
+    <ui:include src="empnav.xhtml" />
+
+    <div class="container">
+        <h:form id="grievanceForm">
+            <h1>Raise Grievance</h1>
+            <table>
+                <tr>
+                    <td><h:outputLabel for="email" value="Enter Email" /></td>
+                    <td>
+                        <h:inputText id="email" required="true" requiredMessage="Email is required" value="#{hr.email}" validatorMessage="Invalid email format">
+                            <f:validateRegex pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
+                        </h:inputText>
+                        <h:message for="email" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="contact" value="Contact Number:" /></td>
+                    <td>
+                        <h:inputText id="contact" required="true" requiredMessage="Enter Contact No" value="#{hr.contact}" validatorMessage="Contact No must contain 10 digits only">
+                            <f:validateRegex pattern="[6789][0-9]{9}" />
+                        </h:inputText>
+                        <h:message for="contact" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="grievanceType" value="Type of Grievance:" /></td>
+                    <td>
+                        <h:selectOneMenu id="grievanceType" required="true" requiredMessage="Select Type of Grievance:" value="#{hr.grievanceType}">
+                            <f:selectItem itemLabel="--Select--" itemValue="" />
+                            <f:selectItem itemLabel="Work Environment" itemValue="workEnvironment" />
+                            <f:selectItem itemLabel="Harassment" itemValue="harassment" />
+                            <f:selectItem itemLabel="Pay Dispute" itemValue="payDispute" />
+                            <f:selectItem itemLabel="Other" itemValue="other" />
+                        </h:selectOneMenu>
+                        <h:message for="grievanceType" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="grievanceDetails" value="Details Of Grievance:" /></td>
+                    <td>
+                        <h:inputTextarea id="grievanceDetails" required="true" rows="5" cols="30" requiredMessage="Please Enter grievanceDetails" value="#{hr.grievanceDetails}" />
+                        <h:message for="grievanceDetails" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="incidentLocation" value="Enter Incident Location" /></td>
+                    <td>
+                        <h:inputText id="incidentLocation" required="true" requiredMessage="Enter Location Of incident" value="#{hr.incidentLocation}" />
+                        <h:message for="incidentLocation" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="dateofincident" value="Date of Incident:" /></td>
+                    <td>
+                        <h:inputText id="dateofincident" required="true" requiredMessage="Date of Incident is required" value="#{hr.dateofincident}">
+                            <f:passThroughAttribute name="type" value="date" />
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                        </h:inputText>
+                        <h:message for="dateofincident" styleClass="message" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="responsiblePerson" value="Name of Responsible Person:" /></td>
+                    <td>
+                        <h:inputText id="responsiblePerson" required="true" requiredMessage="Enter Responsible Person" value="#{hr.responsiblePerson}" />
+                        <h:message for="responsiblePerson" styleClass="message" />
+                    </td>
+                </tr>
+                <tr align='center'>
+                    <td colspan="2">
+                        <h:commandButton value="Submit" action="#{hr.addGrievance(emps.fullname)}" styleClass="custom-submit-button" />
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </div>
+</body>
+</html>

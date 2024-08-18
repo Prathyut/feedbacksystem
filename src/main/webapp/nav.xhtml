@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+    <title>Navigation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: url('pictures/image7.jpg') no-repeat center center fixed;
+        background-size: contain;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        overflow: hidden;
+        background: linear-gradient(90deg, #FF6F61, #FFA07A); /* Vibrant orange gradient */
+        font-family: 'Roboto', sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: white; /* White text color for contrast */
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-size: 17px;
+        width: 20%;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white on hover */
+        color: #FF6F61; /* Matching gradient color on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a.icon {
+        display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar a:not(:first-child) {
+            display: none;
+        }
+        .navbar a.icon {
+            float: right;
+            display: block;
+        }
+    }
+
+    .navbar.responsive {
+        position: relative;
+    }
+
+    .navbar.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .navbar i {
+        margin-right: 8px;
+    }
+
+    .container {
+        width: 80%;
+        margin: 60px auto 0;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .container:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        text-align: center;
+        color: #FF6F61; /* Matching gradient color */
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .nav-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #FF6F61; /* Matching gradient color */
+        font-weight: bold;
+        padding: 12px 24px;
+        border: 2px solid #FF6F61; /* Matching gradient color */
+        border-radius: 6px;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: #FF6F61; /* Matching gradient color on hover */
+        color: white; /* White text on hover */
+        transform: scale(1.05);
+    }
+
+    p {
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+    }
+</style>
+
+
+</head>
+<body>
+     <div class="navbar" id="myNavbar">
+        <a href="home.jsf"><i class="fas fa-home"></i> Home</a>
+   
+        <a href="emplogin.jsf"><i class="fas fa-sign-in-alt"></i> Employee Login</a>
+        <a href="hrlogin.jsf"><i class="fas fa-user-shield"></i> HR Login</a>
+        <a href="adminlogin.jsf"><i class="fas fa-user-shield"></i>Admin Login</a>"
+        
+        <a href="javascript:void(0);" class="icon" onclick="toggleNavbar()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Update Failed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .message-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .message-container h2 {
+            color: #FF0000;
+        }
+        .message-container p {
+            color: #333;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</h:head>
+<body>
+    <div class="message-container">
+        <h2>Update Failed</h2>
+        <p>Employee details could not be updated. Please try again.</p>
+        <h:link outcome="viewall" value="Back to Update Form" styleClass="btn-back"/>
+    </div>
+</body>
+</html>

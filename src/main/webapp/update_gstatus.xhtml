@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+    <title>Update Grievance Status</title>
+    
+</h:head> 
+<body>
+        <ui:include src="nav.xhtml" />
+
+        <h3 align='center'>Update Grievance Details</h3>
+       <h:form styleClass="form-container">
+        
+        <f:metadata>
+            <f:viewParam name="ticket_id" value="#{hr.ticket_id}" />
+            <f:viewParam name="ticket_raiser" value="#{hr.ticket_raiser}" />
+            <f:viewParam name="responsible_person" value="#{hr.responsiblePerson}" />
+            <f:viewParam name="gre_status" value="#{hr.gre_status}" />
+        </f:metadata>
+        
+        <h:outputLabel for="ticketidParam" value="Ticket ID:" />
+        <h:inputText id="ticketidParam" value="#{hr.ticket_id}" disabled="true" /><br/>
+        
+        <h:outputLabel for="ticket_raiser" value="Ticket Raiser:" />
+        <h:inputText id="ticket_raiser" value="#{hr.ticket_raiser}" /><br/>
+        
+        <h:outputLabel for="responsiblePerson" value="Responsible Person:" />
+        <h:inputText id="responsiblePerson" value="#{hr.responsiblePerson}" /><br/>
+        
+        
+        <h:outputLabel for="gre_status" value="Gre Status:" />
+        <h:selectOneMenu id="gre_status" value="#{hr.gre_status}">
+            <f:selectItem itemValue="Submitted" itemLabel="Submitted" />
+            <f:selectItem itemValue="Pending" itemLabel="Pending" />
+            <f:selectItem itemValue="Solved" itemLabel="Solved" />
+            
+        </h:selectOneMenu><br/>
+        
+        <h:commandButton value="Update" action="#{hr.updategrestatus()}" styleClass="btn-update" />
+    </h:form>
+</body> 
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+    <title>View My Grievances</title>
+    <a href="hrhome.jsf"><i class="fas fa-home"></i> Home</a>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            display: inline-block;
+            margin: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .employee-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .employee-table th, .employee-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        .employee-table th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+        }
+        .employee-table td {
+            background-color: #fff;
+        }
+        .employee-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .employee-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .action-buttons .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        .action-buttons .btn.delete {
+            background-color: #e53935;
+        }
+        .action-buttons .btn.delete:hover {
+            background-color: #c62828;
+        }
+        .action-buttons .btn.update {
+            background-color: #43a047;
+        }
+        .action-buttons .btn.update:hover {
+            background-color: #388e3c;
+        }
+        @media screen and (max-width: 768px) {
+            .employee-table {
+                font-size: 14px; 
+            }
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .action-buttons .btn {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</h:head> 
+<body> 
+    
+<center>
+    <h1>View Status Of Grievance</h1>
+    
+</center>
+
+<h:form>
+    <h:dataTable value="#{hr.grelist}" var="gre" class="employee-table">
+        <h:column>
+            <f:facet name="header">Ticket ID</f:facet>
+            #{gre.ticket_id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{gre.ticket_raiser}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{gre.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Contact NO</f:facet>
+            #{gre.contact}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Type Of Grievance</f:facet>
+            #{gre.grievanceType}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Grievance Details</f:facet>
+            #{gre.grievanceDetails}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Location Of Incident</f:facet>
+            #{gre.incidentLocation}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Date Of Incident</f:facet>
+            #{gre.dateofincident}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Responsible Person</f:facet>
+            #{gre.responsiblePerson}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Gre Status</f:facet>
+            #{gre.gre_status}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Action</f:facet>
+            <div class="action-buttons">
+                <h:commandLink value="Delete" action="#{hr.deletegre(gre.ticket_id)}" styleClass="btn delete" />
+                <h:commandLink value="Update" action="#{adminbean.updategreRedirect(gre.ticket_id, gre.ticket_raiser, gre.responsiblePerson, gre.gre_status)}" styleClass="btn update" />
+            </div>
+        </h:column>
+    </h:dataTable>
+</h:form>
+    
+</body> 
+</html>

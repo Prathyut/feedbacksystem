@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Update Employee Role</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h3 {
+            text-align: center;
+            color: #007BFF;
+        }
+        h:outputLabel {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        h:inputText, h:selectOneMenu {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn-update {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-update:hover {
+            background-color: #45a049;
+        }
+        .messages {
+            color: green;
+            margin-bottom: 15px;
+        }
+    </style>
+</h:head>
+<body>
+    <h:form styleClass="form-container">
+        <h3>Update Employee Details</h3>
+        
+        <h:messages styleClass="messages" globalOnly="true" />
+        
+        <f:metadata>
+            <f:viewParam name="id" value="#{emp.id}" />
+            <f:viewParam name="fullname" value="#{emp.fullname}" />
+            <f:viewParam name="email" value="#{emp.email}" />
+            <f:viewParam name="gender" value="#{emp.gender}" />
+            <f:viewParam name="marital_status" value="#{emp.marital_status}" />
+            <f:viewParam name="contactno" value="#{emp.contactno}" />
+            <f:viewParam name="salary" value="#{emp.salary}" />
+            <f:viewParam name="status" value="#{emp.status}" />
+        </f:metadata>
+
+        <h:outputLabel for="idParam" value="ID:" />
+        <h:inputText id="idParam" value="#{emp.id}" disabled="true" /><br/>
+        
+        <h:outputLabel for="fullname" value="Fullname:" />
+        <h:inputText id="fullname" value="#{emp.fullname}" /><br/>
+        
+        <h:outputLabel for="email" value="Email:" />
+        <h:inputText id="email" value="#{emp.email}" /><br/>
+        
+        <h:outputLabel for="gender" value="Gender:" />
+        <h:selectOneMenu id="gender" value="#{emp.gender}">
+            <f:selectItem itemValue="Male" itemLabel="Male" />
+            <f:selectItem itemValue="Female" itemLabel="Female" />
+        </h:selectOneMenu><br/>
+        
+        <h:outputLabel for="marital_status" value="Marital Status:" />
+        <h:selectOneMenu id="marital_status" value="#{emp.marital_status}">
+            <f:selectItem itemLabel="Single" itemValue="SINGLE" />
+            <f:selectItem itemLabel="Married" itemValue="MARRIED" />
+            <f:selectItem itemLabel="Divorced" itemValue="DIVORCED" />
+        </h:selectOneMenu><br/>
+        
+        <h:outputLabel for="contactno" value="Contact Number:" />
+        <h:inputText id="contactno" value="#{emp.contactno}" /><br/>
+        
+        <h:outputLabel for="salary" value="Salary:" />
+        <h:inputText id="salary" value="#{emp.salary}" /><br/>
+        
+        <h:outputLabel for="status" value="Status:" />
+        <h:selectOneMenu id="status" value="#{emp.status}">
+            <f:selectItem itemValue="Active" itemLabel="Active" />
+            <f:selectItem itemValue="Inactive" itemLabel="Inactive" />
+            <f:selectItem itemValue="Terminated" itemLabel="Terminated" />
+        </h:selectOneMenu><br/>
+        
+        <h:commandButton value="Update" action="#{emp.update()}" styleClass="btn-update" />
+    </h:form>
+</body>
+</html>

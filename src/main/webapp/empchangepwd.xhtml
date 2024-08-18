@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/xhtml1"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Update Password</title>
+    <h:outputStylesheet name="styles.css"/>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .navbar {
+        background: #4A90E2;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+       .navbar a {
+        color: white;
+        text-align: center;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .navbar a:hover {
+        background-color: #357ABD;
+        transform: scale(1.05);
+    }
+        .navbar a.icon {
+            display: none;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px; /* Adjusted for navbar height */
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn-update {
+            width: 100%;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-update:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</h:head>
+<body>r̥
+    <div class="navbar">
+        <a href="emphome.jsp">Home</a>
+        <a href="raisegrie.jsf"> Raise Grievances</a>
+        <a href="mygrestatus.xhtml">  My Grievances</a>
+        <a href="changepwd.jsf">Change Password</a>
+        <a href="emplogout.jsp">Logout</a>
+    </div>
+
+    <div class="content">
+        <h:form styleClass="container">
+            <div class="form-group">
+                <h:outputLabel for="idParam" value="ID:"/>
+                <h:inputText id="idParam" value="#{emps.id}" disabled="true"/>
+            </div>
+        
+            <div class="form-group">
+                <h:outputLabel for="newpassword" value="New Password:"/>
+                <h:inputSecret id="newpassword" value="#{emp.newpassword}" required="true"/>
+            </div>
+
+            <h:commandButton value="Update Password" action="#{emp.updatepwd(emps.id)}" styleClass="btn-update"/>
+        </h:form>
+    </div>
+</body>
+</html>

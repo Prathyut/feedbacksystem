@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+    <title>View My Grievances</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eaeaea;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: #444;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #444;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 30px;
+            max-width: 900px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .card-header {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.4em;
+            color: #333;
+        }
+        .card-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .card-item {
+            flex: 1 1 calc(50% - 20px);
+            margin-bottom: 20px;
+        }
+        .card-item label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .card-item span {
+            display: block;
+            color: #555;
+        }
+        @media screen and (max-width: 768px) {
+            .card-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .card-item {
+                flex: 1 1 100%;
+            }
+        }
+        
+        .print-url {
+            display: block;
+            cursor: pointer;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 1.1em;
+            color: #007bff;
+        }
+
+        .print-url i {
+            margin-right: 8px;
+        }
+
+        @media print {
+            .print-url {
+                display: none;
+            }
+        }
+    </style>
+</h:head> 
+<body> 
+    <ui:include src="empnav.xhtml" />
+
+    <div class="print-url" onclick="window.print()">
+        <i class="far fa-file-pdf"></i> Print Report
+    </div>
+
+    <h1>View Status Of Grievance</h1>
+    
+    <ui:repeat value="#{hr.myGrelist}" var="gre">
+        <div class="card">
+            <div class="card-header">Grievance Ticket: #{gre.ticket_id}</div>
+            <div class="card-content">
+                <div class="card-item">
+                    <label>Name:</label>
+                    <span>#{gre.ticket_raiser}</span>
+                </div>
+                <div class="card-item">
+                    <label>Email:</label>
+                    <span>#{gre.email}</span>
+                </div>
+                <div class="card-item">
+                    <label>Contact NO:</label>
+                    <span>#{gre.contact}</span>
+                </div>
+                <div class="card-item">
+                    <label>Type Of Grievance:</label>
+                    <span>#{gre.grievanceType}</span>
+                </div>
+                <div class="card-item">
+                    <label>Grievance Details:</label>
+                    <span>#{gre.grievanceDetails}</span>
+                </div>
+                <div class="card-item">
+                    <label>Location Of Incident:</label>
+                    <span>#{gre.incidentLocation}</span>
+                </div>
+                <div class="card-item">
+                    <label>Date Of Incident:</label>
+                    <span>#{gre.dateofincident}</span>
+                </div>
+                <div class="card-item">
+                    <label>Responsible Person:</label>
+                    <span>#{gre.responsiblePerson}</span>
+                </div>
+                <div class="card-item">
+                    <label>Status:</label>
+                    <span>#{gre.gre_status}</span>
+                </div>
+            </div>
+        </div>
+    </ui:repeat>
+</body> 
+</html>
